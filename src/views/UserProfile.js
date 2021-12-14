@@ -119,10 +119,10 @@ function UserProfile() {
         })
     }); */
 
-    const response = await post('http://localhost:5000/user/changeInfo',
+    const response = await post('http://localhost:5000/user/changeEnterpriseInfo',
     {
         name: name,
-        email: email,
+        //email: email,
         phone: phone,
         gender: gender,
         dateofBirth: dateofBirth,
@@ -222,22 +222,17 @@ function UserProfile() {
                     </Col>
                   </Row> */}
                   <Row>
-                    {/* <Col className="pr-md-1" md="5">
-                      <FormGroup>
-                        <label>City</label>
-                        <Input
-                          defaultValue="None"
-                          placeholder="None"
-                          type="text"
-                          readOnly
-                        />
-                      </FormGroup>
-                    </Col> */}
-                    <Col className="px-md-1" md="0,5">
-                      <FormGroup>
+                    <Col className="pr-md-1" md="6">
+                    <FormGroup>
+                        <label>Số điện thoại</label>
+                        <Input defaultValue={phone} placeholder={phone} type="text" onChange={e => setPhone(e.target.value.toString())}/>
                       </FormGroup>
                     </Col>
-                    <Col className="px-md-1" md="3">
+                    {/* <Col className="px-md-1" md="0,5">
+                      <FormGroup>
+                      </FormGroup>
+                    </Col> */}
+                    <Col className="pl-md-1" md="6">
                       <FormGroup>
                         <label>Giới tính</label>
                         <div className="radio-buttons">
@@ -268,15 +263,15 @@ function UserProfile() {
                           </div>
                       </FormGroup>
                     </Col>
-                    <Col className="pl-md-1" md="3">
+                    {/* <Col className="pl-md-1" md="3">
                       <FormGroup>
                         <label>Số điện thoại</label>
                         <Input defaultValue={phone} placeholder={phone} type="text" onChange={e => setPhone(e.target.value.toString())}/>
                       </FormGroup>
-                    </Col>
+                    </Col> */}
                   </Row>
                   <Row>
-                    <Col md="8">
+                    <Col className="pr-md-1" md="6">
                       <FormGroup>
                         <label>Kinh độ</label>
                         <Input
@@ -287,7 +282,7 @@ function UserProfile() {
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="8">
+                    <Col className="pl-md-1" md="6">
                       <FormGroup>
                         <label>Vĩ độ</label>
                         <Input

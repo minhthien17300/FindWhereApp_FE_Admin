@@ -9,12 +9,12 @@ function Footer() {
       <Container fluid>
         <Nav>
           <NavItem>
-            <NavLink href="https://www.facebook.com/phamduy.lap.16/">
+            <NavLink href="https://www.facebook.com/minhthien17300">
               FaceBook
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://github.com/ductuan2809/RVG">
+            <NavLink href="https://github.com/minhthien17300/FindWhereApp_FE_Admin">
               GitHub
             </NavLink>
           </NavItem>
@@ -28,7 +28,7 @@ function Footer() {
           >
             HCMUTE-ers
           </a>{" "}
-          Web Review Game
+          Administrator Web Console
         </div>
       </Container>
     </footer>

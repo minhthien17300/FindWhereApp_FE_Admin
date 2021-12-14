@@ -122,11 +122,11 @@ function GuestNavbar(props) {
                   <span className="d-lg-none d-md-block">Search</span>
                 </Button>
               </InputGroup>
-              <InputGroup>
-                <Button color="link" href="/guest/login">
-                    ĐĂNG NHẬP
+              {/* <InputGroup>
+                <Button color="link" href="/guest/resetpassword">
+                    QUÊN MẬT KHẨU
                 </Button>
-              </InputGroup>
+              </InputGroup> */}
               {/* <InputGroup>
                 <Button color="link" href="/guest/register">
                     Register

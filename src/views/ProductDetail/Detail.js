@@ -1,7 +1,7 @@
 
 import React from "react";
-import { Redirect,Link } from "react-router-dom";
-import { useState,useEffect } from "react/cjs/react.development";
+import { Redirect, Link } from "react-router-dom";
+import { useState, useEffect } from "react/cjs/react.development";
 import ReactPaginate from "react-paginate";
 import '../pagination.css'
 // reactstrap components
@@ -23,46 +23,46 @@ import { get, post } from "../../helper/fetch.helper";
 
 function Detail(props) {
   //comments
-  const {_id } = props;
-  const commentarray=[
-    
+  const { _id } = props;
+  const commentarray = [
+
   ]
-  const[comments,setcomments]=useState(commentarray.slice(0,50))
-  const[pagenumber,setpageNumber]=useState(0)
-  const cmtPerPage=3
-  const prevpage=pagenumber*cmtPerPage
-  const[evaluateExist, setExist]=React.useState(false);
-  const[score, setScore]=useState('');
-  const[types, setTypes]=useState('');
-  const[image, setImage]=useState('');
-  const[result, setResult]=useState({});
-  const[evaluates, setEvaluates]=useState([]);
-  const[userEvaluate, setUserEvaluate]=useState({});
-  const[userScore, setUserScore]=useState();
-  const[userReview, setUserReview]=useState('');
-  const[enterpriseName, setEnterpriseName]=useState('');
+  const [comments, setcomments] = useState(commentarray.slice(0, 50))
+  const [pagenumber, setpageNumber] = useState(0)
+  const cmtPerPage = 3
+  const prevpage = pagenumber * cmtPerPage
+  const [evaluateExist, setExist] = React.useState(false);
+  const [score, setScore] = useState('');
+  const [types, setTypes] = useState('');
+  const [image, setImage] = useState('');
+  const [result, setResult] = useState({});
+  const [evaluates, setEvaluates] = useState([]);
+  const [userEvaluate, setUserEvaluate] = useState({});
+  const [userScore, setUserScore] = useState();
+  const [userReview, setUserReview] = useState('');
+  const [enterpriseName, setEnterpriseName] = useState('');
 
-  const[isBan, setIsBan]=useState(false);
+  const [isBan, setIsBan] = useState(false);
 
-  const GetURLParameter = (sParam) =>{
+  const GetURLParameter = (sParam) => {
 
     var sPageURL = window.location.search.substring(1);
     var sURLVariables = sPageURL.split('&');
     for (var i = 0; i < sURLVariables.length; i++) {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] === sParam) {
-            return (sParameterName[1].toString());
-        }
+      var sParameterName = sURLVariables[i].split('=');
+      if (sParameterName[0] === sParam) {
+        return (sParameterName[1].toString());
+      }
     }
   }
 
-useEffect(() => {
-  (    
-      async () => {               
+  useEffect(() => {
+    (
+      async () => {
         const id = GetURLParameter('id')
         const response = await get('http://localhost:5000/product/getProductDetail', { id: id });
         console.log(response);
-        
+
         if (response.success) {
           //làm gì đó
           setResult(response.data);
@@ -74,33 +74,35 @@ useEffect(() => {
           setTypes(productTypes);
           setScore(response.data.score.toString() + "/5");
           setImage(response.data.images[0]);
-        } else {
-          alert(response.message);
-        }     
 
+          //get product comment
+          const eResponse = await get('http://localhost:5000/evaluate/getEvaluateOfProduct', { gID: id });
+          console.log(eResponse);
 
-        //get product comment
-        const eResponse = await get('http://localhost:5000/evaluate/getEvaluateOfProduct', { gID: id });
-        console.log(eResponse);
+          if (eResponse.success) {
+            //làm gì đó
+            setEvaluates(eResponse.data);
+          } else {
+            alert(response.message);
+          }
 
-        if (eResponse.success) {
-          //làm gì đó
-          setEvaluates(eResponse.data);
+          //get enterprise name
+          const uResponse = await get('http://localhost:5000/user/getEnterpriseByID', { id: response.data.eID });
+          console.log(uResponse);
+
+          if (uResponse.success) {
+            //làm gì đó
+            setEnterpriseName(uResponse.data.name);
+          } else {
+            alert(uResponse.message);
+          }
         } else {
           alert(response.message);
         }
-        
-        //get enterprise name
-        const uResponse = await get('http://localhost:5000/user/getEnterpriseByID', { id: result.eID });
-        console.log(eResponse);
 
-        if (uResponse.success) {
-          //làm gì đó
-          setEnterpriseName(uResponse.data.name);
-        } else {
-          alert(response.message);
-        }
-        
+
+
+
         /* if (localStorage.getItem("token") == null) {
           let userEva = {
             score: "",
@@ -129,99 +131,99 @@ useEffect(() => {
           }
         } */
       }
-  )();
-}, [])
+    )();
+  }, [])
 
 
-const submit = async (e) => {
-  e.preventDefault();
+  const submit = async (e) => {
+    e.preventDefault();
 
-  const id = GetURLParameter('id')
-  console.log(id);
+    const id = GetURLParameter('id')
+    console.log(id);
 
-  if (!evaluateExist && localStorage.getItem("token") != null) {
-    const response = await post('http://localhost:5000/evaluate/addEvaluate', { gID: id, score: userScore, comment: userReview }, {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',"Authorization": "Bearer " + localStorage.getItem("token")});
-    console.log(response);
-    alert(response.message);
+    if (!evaluateExist && localStorage.getItem("token") != null) {
+      const response = await post('http://localhost:5000/evaluate/addEvaluate', { gID: id, score: userScore, comment: userReview }, {
+        'Content-Type': 'application/json',
+        Accept: 'application/json', "Authorization": "Bearer " + localStorage.getItem("token")
+      });
+      console.log(response);
+      alert(response.message);
 
-    if (response.message === "Bạn đã bị khóa tài khoản do liên tục vi phạm nguyên tắc đánh giá của ReviewGame! Nếu có bất cứ thắc mắc nào xin liên hệ email: phamduylap123456@gmail.com")
-    {
-      setIsBan(true);
+      if (response.message === "Bạn đã bị khóa tài khoản do liên tục vi phạm nguyên tắc đánh giá của ReviewGame! Nếu có bất cứ thắc mắc nào xin liên hệ email: phamduylap123456@gmail.com") {
+        setIsBan(true);
+      }
+    } else if (evaluateExist) {
+      const response = await post('http://localhost:5000/evaluate/editEvaluate', { gID: id, score: userScore, comment: userReview }, {
+        'Content-Type': 'application/json',
+        Accept: 'application/json', "Authorization": "Bearer " + localStorage.getItem("token")
+      });
+      console.log(response);
+      alert(response.message);
+
+      if (response.message === "Bạn đã bị khóa tài khoản do liên tục vi phạm nguyên tắc đánh giá của ReviewGame! Nếu có bất cứ thắc mắc nào xin liên hệ email: phamduylap123456@gmail.com") {
+        setIsBan(true);
+      }
+    } else {
+      alert("Bạn phải đăng nhập để tiến hành đánh giá");
     }
-  } else if (evaluateExist){
-    const response = await post('http://localhost:5000/evaluate/editEvaluate', { gID: id, score: userScore, comment: userReview }, {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',"Authorization": "Bearer " + localStorage.getItem("token")});
-    console.log(response);
-    alert(response.message);
-
-    if (response.message === "Bạn đã bị khóa tài khoản do liên tục vi phạm nguyên tắc đánh giá của ReviewGame! Nếu có bất cứ thắc mắc nào xin liên hệ email: phamduylap123456@gmail.com")
-    {
-      setIsBan(true);
-    }
-  } else {
-    alert("Bạn phải đăng nhập để tiến hành đánh giá");
   }
-}
 
-  if (isBan) return <Redirect to="/guest/login"/>;
+  if (isBan) return <Redirect to="/guest/login" />;
 
-  const displayCmt=evaluates.slice(prevpage,prevpage+cmtPerPage).map((item)=>{
-    return(
+  const displayCmt = evaluates.slice(prevpage, prevpage + cmtPerPage).map((item) => {
+    return (
       <Form >
-                <Row>
-                    <Col className="pr-md-1" md="6">
-                      <FormGroup>
-                        <label>{item.name}</label>
-                        
-                        <div className="form-control">
-                        {new Date(item.dateEvaluate).toISOString().split("T")[0]}
-                  
-                        </div>
-                      </FormGroup>
-                    </Col>
-                    <Col className="pl-md-1" md="6">
-                      <FormGroup>
-                        <label>Điểm số</label>
+        <Row>
+          <Col className="pr-md-1" md="6">
+            <FormGroup>
+              <label>{item.name}</label>
 
-                        <div className="form-control">
-                        {item.score}/5
-                  
-                        </div>
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="12">
-                      <FormGroup>
-                        <div className="form-control">
-                        {item.comment}
-                  
-                        </div>
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                </Form>
+              <div className="form-control">
+                {new Date(item.dateEvaluate).toISOString().split("T")[0]}
+
+              </div>
+            </FormGroup>
+          </Col>
+          <Col className="pl-md-1" md="6">
+            <FormGroup>
+              <label>Điểm số</label>
+
+              <div className="form-control">
+                {item.score}/5
+
+              </div>
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="12">
+            <FormGroup>
+              <div className="form-control">
+                {item.comment}
+
+              </div>
+            </FormGroup>
+          </Col>
+        </Row>
+      </Form>
 
     )
   })
 
-  const pageCount=Math.ceil(evaluates.length/cmtPerPage)
+  const pageCount = Math.ceil(evaluates.length / cmtPerPage)
 
-  const changePage=({selected})=>{
-        setpageNumber(selected);
+  const changePage = ({ selected }) => {
+    setpageNumber(selected);
   }
 
-  const handleScoreChange = (e) =>{
+  const handleScoreChange = (e) => {
     setUserScore(e.target.value);
   }
 
-  const handleReviewChange = (e) =>{
+  const handleReviewChange = (e) => {
     setUserReview(e.target.value);
   }
-  
+
   return (
     <>
       <div className="content">
@@ -234,28 +236,28 @@ const submit = async (e) => {
               <CardBody>
                 <Form>
                   <Row>
-                    
-                    <Col  md="12">
+
+                    <Col md="12">
                       <FormGroup>
                         <label >
                           Công ty cung cấp
                         </label>
                         <div className="form-control">
-                        {enterpriseName}
-                  
+                          {enterpriseName}
+
                         </div>
                       </FormGroup>
                     </Col>
                   </Row>
                   <Row>
-                    
+
                     <Col md="12">
                       <FormGroup>
                         <label>Điểm người dùng</label>
 
                         <div className="form-control">
-                        {score}
-                  
+                          {score}
+
                         </div>
                       </FormGroup>
                     </Col>
@@ -266,8 +268,8 @@ const submit = async (e) => {
                         <label>Phân loại</label>
 
                         <div className="form-control">
-                        {types}
-                  
+                          {types}
+
                         </div>
                       </FormGroup>
                     </Col>
@@ -277,19 +279,19 @@ const submit = async (e) => {
                       <FormGroup>
                         <label>Giá</label>
                         <div className="card-description">
-                        {result.price}
-                  
+                          {result.price}
+
                         </div>
                       </FormGroup>
                     </Col>
-                    
+
                   </Row>
                   <Row>
-                    
+
                   </Row>
                 </Form>
               </CardBody>
-              
+
             </Card>
             {/* <Card>
               <Form method="post" onSubmit={submit}>
@@ -338,22 +340,22 @@ const submit = async (e) => {
             <Card>
               <CardHeader> Đánh giá</CardHeader>
               <CardBody>
-                
+
                 {displayCmt}
-                
+
 
                 <ReactPaginate
-                previousLabel={"<"}
-                nextLabel={">"}
-                pageCount={pageCount}
-                onPageChange={changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
-                
-                
+                  previousLabel={"<"}
+                  nextLabel={">"}
+                  pageCount={pageCount}
+                  onPageChange={changePage}
+                  containerClassName={"paginationBttns"}
+                  previousLinkClassName={"previousBttn"}
+                  nextLinkClassName={"nextBttn"}
+                  disabledClassName={"paginationDisabled"}
+                  activeClassName={"paginationActive"}
+
+
                 />
 
               </CardBody>
@@ -378,7 +380,7 @@ const submit = async (e) => {
                   </a>
                 </div>
                 <div className="card-description">
-                {result.price}
+                  {result.price}
                 </div>
               </CardBody>
               <CardFooter>
