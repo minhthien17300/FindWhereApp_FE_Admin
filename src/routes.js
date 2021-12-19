@@ -20,6 +20,7 @@ import ManageUser from "views/ManageUser";
 import ManageEnterprise from "views/ManageEnterprise";
 import DetailModify from "views/DetailModify";
 import ChangePassword from "auth/ChangePassword";
+import MapScreen from "views/Map";
 
 const authRoutes = [
 
@@ -60,8 +61,8 @@ var routes = [
 
   {
     path: "/resetpassword",
-    name: "ResetPass",
-    rtlName: "ResetPass",
+    name: "Reset Password",
+    rtlName: "Reset Password",
     icon: "tim-icons icon-atom",
     component: ResetPassword,
     guestlayout: "/guest",
@@ -90,15 +91,15 @@ var routes = [
 
   {
     path: "/manage-products",
-    name: "Manage-products",
-    rtlName: "Mangae-products",
+    name: "Manage Products",
+    rtlName: "Manage-products",
     icon: "tim-icons icon-atom",
     component: ManageProduct,
     userlayout: "/user",
   },
   {
     path: "/manage-users",
-    name: "Manage-users",
+    name: "Manage Users",
     rtlName: "Manage-users",
     icon: "tim-icons icon-atom",
     component: ManageUser,
@@ -106,7 +107,7 @@ var routes = [
   },
   {
     path: "/manage-enterprises",
-    name: "Manage-enterprises",
+    name: "Manage Enterprises",
     rtlName: "Manage-enterprises",
     icon: "tim-icons icon-atom",
     component: ManageEnterprise,
@@ -114,21 +115,21 @@ var routes = [
   },
   {
     path: "/change-password",
-    name: "Change-password",
+    name: "Change Password",
     rtlName: "Change-password",
     icon: "tim-icons icon-atom",
     component: ChangePassword,
     adminlayout: "/admin",
     userlayout: "/user",
   },
-  // {
-  //   path: "/map",
-  //   name: "Map",
-  //   rtlName: "خرائط",
-  //   icon: "tim-icons icon-pin",
-  //   component: Map,
-  //   layout: "/admin",
-  // },
+  {
+    path: "/map",
+    name: "Map",
+    rtlName: "خرائط",
+    icon: "tim-icons icon-pin",
+    component: MapScreen,
+    adminlayout: "/admin",
+  },
   // {
   //   path: "/notifications",
   //   name: "Notifications",
@@ -168,15 +169,15 @@ var routes = [
   
   {
     path: "/add-products",
-    name: "Add-products",
-    rtlName: "Add-products",
+    name: "Add Products",
+    rtlName: "Add Products",
     icon: "tim-icons icon-puzzle-10",
     component: DetailAdd,
     userlayout: "/user",
   },
   {
     path: "/add-enterprises",
-    name: "Add-enterprises",
+    name: "Add Enterprises",
     rtlName: "Add-enterprises",
     icon: "tim-icons icon-puzzle-10",
     component: EnterpriseAdd,
@@ -184,7 +185,7 @@ var routes = [
   },
   {
     path: "/detail-modify",
-    name: "Detail-Modify",
+    name: "Detail Modify",
     rtlName: "Detail-Modify",
     icon: "tim-icons icon-puzzle-10",
     component: DetailModify,

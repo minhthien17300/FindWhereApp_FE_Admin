@@ -26,8 +26,9 @@ function DetailAdd() {
   const [typesList, setTypesList]=useState([])
   const [typearray,setTypeArray]=useState([])
   const termarray=[]
-  const [name,setName]=useState('')
-  const [publisher,setPublisher]=useState('')
+  const [name,setName]=useState('');
+  const [price, setPrice]=useState();
+  //const [publisher,setPublisher]=useState('')
   const [description,setDesciption]=useState('')
   const [redirect, setRedirect]=useState(false);
 
@@ -67,14 +68,15 @@ function DetailAdd() {
     
     var data=new FormData()
     data.append('name',name)
-    data.append('publisher',publisher)
+    //data.append('publisher',publisher)
     data.append('description',description)
+    data.append('price', price)
     for(var i=0; i<types.length; i++){
       data.append('types['+i+']',types[i])
     }
     data.append('images',image)
 
-    const response =await fetch("http://localhost:5000/game/addGame", 
+    const response =await fetch("http://localhost:5000/product/addProduct", 
     {
       method:"POST",
       headers:{
@@ -93,7 +95,7 @@ function DetailAdd() {
   }
   console.log(image)
 
-  if(redirect) return <Redirect to="/admin/manage-games"/>;
+  if(redirect) return <Redirect to="/user/manage-products"/>;
 
   return (
     <>
@@ -102,7 +104,7 @@ function DetailAdd() {
           <Col md="8">
             <Card>
               <CardHeader>
-                <h5 className="title">Add games</h5>
+                <h5 className="title">THÊM SẢN PHẨM</h5>
               </CardHeader>
               <form method="post" onSubmit={submit} >
               <CardBody>
@@ -110,11 +112,11 @@ function DetailAdd() {
                   <Row>
                     <Col className="pr-md-1" md="6">
                       <FormGroup>
-                        <label>Tên Game</label>
+                        <label>Tên Sản phẩm</label>
                         <Input
                           
                           
-                          placeholder="Game's name"
+                          placeholder="Product's name"
                           type="text"
                           onChange={e=>setName(e.target.value)}
                         />
@@ -128,17 +130,17 @@ function DetailAdd() {
                     <Col  md="12">
                       <FormGroup>
                         <label >
-                          Nhà phát hành
+                          Giá
                         </label>
-                        <Input placeholder="Publisher's name" type="text" 
-                        onChange={e=>setPublisher(e.target.value)}/>
+                        <Input placeholder="Product's price" type="text" 
+                        onChange={e=>setPrice(Number.parseInt(e.target.value))}/>
                       </FormGroup>
                     </Col>
                  </Row>
                     <Row>
                     <Col md="12">
                       <FormGroup>
-                        <label>Thể loại</label>
+                        <label>Phân loại</label>
 
                         <Select 
                         keepSelectedInList

@@ -98,7 +98,7 @@ function AdminNavbar(props) {
     setRedirect(true);
   };
 
-  if(redirect) return <Redirect to="/guest/games"/>
+  if(redirect) return <Redirect to="/guest/login"/>
 
   return (
     <>

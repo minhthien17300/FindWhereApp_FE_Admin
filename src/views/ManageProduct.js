@@ -23,41 +23,42 @@ function Tables() {
 
   const [open, setOpen] = React.useState(false);
   const [id, setID] = React.useState('');
-  const [games, setGame] = useState([]);
+  const [products, setProduct] = useState([]);
 
-  const loadGames = async () => {     
-    const response = await fetch('http://localhost:5000/game/getALLGame',{
-                method: 'GET',
-                headers: {'Content-Type': 'application/json',}
-            });
-            const content = await response.json();
-
-            if(response.status === 302)
+  const loadProducts = async () => {     
+            const response = await get('http://localhost:5000/product/getEnterpriseProductSort',
+            {},
             {
-              setGame(content.data);
+                'Content-Type': 'application/json',
+                Accept: 'application/json',"Authorization": "Bearer " + localStorage.getItem("token")
+            });
+
+            if(response.success)
+            {
+              setProduct(response.data);
             //   setImage(content.data.images);
             //   setID(content.data._id);
             //   setScore(content.data.score);
             //   setTypes(content.data.types);
-              console.log(content.message)
+              console.log(response.message)
             }
   }    
 
   useEffect(() => {
-    loadGames();
+    loadProducts();
   }, []);
 
 
 
 const handleDelete = async (id) => {
   console.log(id);
-  const response = await post('http://localhost:5000/game/deleteGame', {id: id},
+  const response = await post('http://localhost:5000/product/deleteProduct', {id: id},
   {
     'Content-Type': 'application/json',
     Accept: 'application/json',"Authorization": "Bearer " + localStorage.getItem("token")});
   console.log(response);
   alert(response.message);
-  loadGames()
+  loadProducts()
 }
 
 const handleClickOpen = () => {
@@ -76,14 +77,14 @@ const handleClose_Confirm = () => {
 };
 
 
-const[item, setItem]=useState(games.slice(0,50))
+const[item, setItem]=useState(products.slice(0,50))
 //trang đang active
 const [pagenumber,setpageNumber]=useState(0)
 //giới hạn item
 const itemsPerPage=6
 //logic lấy item cho từng trang
 const prevpage=pagenumber*itemsPerPage
-const displayItems=games.slice(prevpage,prevpage+itemsPerPage).map((item) => {
+const displayItems=products.slice(prevpage,prevpage+itemsPerPage).map((item) => {
         
   return(
       
@@ -91,9 +92,9 @@ const displayItems=games.slice(prevpage,prevpage+itemsPerPage).map((item) => {
       <tr>
         <td>{item.name}</td>
         <td>{item.description}</td>
+        <td>{item.price}</td>
+        {/* <td>{item.review}</td> */}
         <td>{item.score}</td>
-        <td>{item.review}</td>
-        <td>{item.publisher}</td>
         <td>{item.types.map((type) => <li>{type}</li>)}</td>
         <td>  
           <Link to={`/detail-modify?id=${item._id}`} className="btn btn-primary"><i className="fas fa-pen"></i></Link>
@@ -109,7 +110,7 @@ const displayItems=games.slice(prevpage,prevpage+itemsPerPage).map((item) => {
                       </DialogTitle>
                       <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                          <a>{"Bạn có muốn xóa Game này không ?"}</a>
+                          <a>{"Bạn có muốn xóa Product này không ?"}</a>
                         </DialogContentText>
                       </DialogContent>
                       <DialogActions>
@@ -125,7 +126,7 @@ const displayItems=games.slice(prevpage,prevpage+itemsPerPage).map((item) => {
       </>
   )
 })
-const pageCount=Math.ceil(games.length/itemsPerPage)
+const pageCount=Math.ceil(products.length/itemsPerPage)
 
 
 
@@ -142,19 +143,18 @@ const changePage=({selected})=>{
           <Col md="12">
             <Card className="card-plain">
               <CardHeader>
-                <CardTitle tag="h4">Games</CardTitle>
-                <Link to="/admin/add-games" className="btn btn-primary"> Thêm </Link>
+                <CardTitle tag="h4">SẢN PHẨM</CardTitle>
+                <Link to="/user/add-products" className="btn btn-primary"> Thêm </Link>
               </CardHeader>
               <CardBody>
                 <Table className="tablesorter" responsive>
                   <thead className="text-primary">
                     <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Score</th>
-                      <th scope="col">Review</th>
-                      <th scope="col">Publisher</th>
-                      <th scope="col">Genre(s)</th>
+                      <th scope="col">Tên Sản phẩm</th>
+                      <th scope="col">Mô tả</th>
+                      <th scope="col">Giá</th>
+                      <th scope="col">Điểm số</th>
+                      <th scope="col">Phân loại</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>

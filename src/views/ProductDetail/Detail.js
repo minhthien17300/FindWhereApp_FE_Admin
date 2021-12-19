@@ -37,7 +37,7 @@ function Detail(props) {
   const [image, setImage] = useState('');
   const [result, setResult] = useState({});
   const [evaluates, setEvaluates] = useState([]);
-  const [userEvaluate, setUserEvaluate] = useState({});
+  //const [description, setDescription] = useState({});
   const [userScore, setUserScore] = useState();
   const [userReview, setUserReview] = useState('');
   const [enterpriseName, setEnterpriseName] = useState('');
@@ -240,7 +240,7 @@ function Detail(props) {
                     <Col md="12">
                       <FormGroup>
                         <label >
-                          Công ty cung cấp
+                          Nhà phân phối
                         </label>
                         <div className="form-control">
                           {enterpriseName}
@@ -380,7 +380,7 @@ function Detail(props) {
                   </a>
                 </div>
                 <div className="card-description">
-                  {result.price}
+                  {result.description}
                 </div>
               </CardBody>
               <CardFooter>

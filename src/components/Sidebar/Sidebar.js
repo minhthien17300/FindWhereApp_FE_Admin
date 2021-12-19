@@ -107,12 +107,12 @@ function Sidebar(props) {
               {routes.map((prop, key) => {
                 if (prop.redirect) return null;
                 //các route muốn ẩn thì thêm đk
-                if (prop.name=="Detail" || prop.name=="ResetPass"|| prop.name=="Add-games"|| prop.name=="Detail-Modify") return null;
+                if (prop.name=="Detail" || prop.name=="Reset Password"|| prop.name=="Detail Modify" || prop.name=="Map") return null;
                 
-                if (!islogin) if (prop.name=="Dashboard" || prop.name=="User Profile" || prop.name=="Manage-products" || prop.name=="Manage-users" || prop.name=="Manage-enterprises" || prop.name=="Change-password" || prop.name=="Add-products" || prop.name=="Products") return null;
-                if (islogin) if (prop.name=="Login" || prop.name=="Register" || prop.name =="Forgot Password") return null;
-                if (isadmin) if (prop.name=="Login" || prop.name=="Register" || prop.name =="Forgot Password" || prop.name=="Add-products" || prop.name=="Manage-products") return null;
-                if (!isadmin) if(prop.name=="Login" || prop.name=="Register" || prop.name =="Forgot Password" || prop.name=="Add-enterprises" || prop.name=="Manage-users" || prop.name=="Manage-enterprises") return null;
+                if (!islogin) if (prop.name=="Dashboard" || prop.name=="User Profile" || prop.name=="Manage Products" || prop.name=="Manage Users" || prop.name=="Manage Enterprises" || prop.name=="Change Password" || prop.name=="Add Products" || prop.name=="Products") return null;
+                if (islogin) if (prop.name=="Login" || prop.name=="Register" || prop.name =="Forgot Password" || prop.name=="Dashboard") return null;
+                if (isadmin) if (prop.name=="Login" || prop.name=="Register" || prop.name =="Forgot Password" || prop.name=="Add Products" || prop.name=="Manage Products") return null;
+                if (!isadmin) if(prop.name=="Login" || prop.name=="Register" || prop.name =="Forgot Password" || prop.name=="Add Enterprises" || prop.name=="Manage Users" || prop.name=="Manage Enterprises") return null;
                 const checkadmin=()=>{
                   
                   if(islogin&&!isadmin) return prop.userlayout + prop.path;

@@ -45,8 +45,8 @@ const Login = (props) => {
   const handlePassChange = (e) =>{
       setPassword(e.target.value);
   }
-  if(redirect == 1) return <Redirect to="/admin/dashboard"/>;
-  else if(redirect == 2) return <Redirect to="/user/dashboard"/>;
+  if(redirect == 1) return <Redirect to="/admin/products"/>;
+  else if(redirect == 2) return <Redirect to="/user/products"/>;
 
     return (
       <div className="content">

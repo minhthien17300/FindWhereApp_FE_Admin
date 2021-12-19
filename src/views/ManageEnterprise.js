@@ -169,7 +169,7 @@ const changePage=({selected})=>{
             <Card className="card-plain">
               <CardHeader>
                 <CardTitle tag="h4">Enterprises</CardTitle>
-                <Link to="/admin/add-users" className="btn btn-primary"> Thêm </Link>
+                <Link to="/admin/add-enterprises" className="btn btn-primary"> Thêm </Link>
               </CardHeader>
               <CardBody>
                 <Table className="tablesorter" responsive>
