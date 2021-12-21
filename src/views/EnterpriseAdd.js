@@ -140,7 +140,7 @@ function EnterpriseAdd() {
                       <Col className="pr-md-1" md="6">
                         <FormGroup>
                           <label >
-                            LAT
+                            Kinh độ
                           </label>
                           <Input placeholder="Nhập kinh độ doanh nghiệp" type="text"
                             onChange={e => setLat(e.target.value)} />
@@ -150,7 +150,7 @@ function EnterpriseAdd() {
                       <Col className="pl-md-1" md="6">
                         <FormGroup>
                           <label >
-                            LNG
+                            Vĩ độ
                           </label>
                           <Input placeholder="Nhập vĩ độ doanh nghiệp" type="text"
                             onChange={e => setLng(e.target.value)} />

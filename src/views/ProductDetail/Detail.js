@@ -76,7 +76,7 @@ function Detail(props) {
           setImage(response.data.images[0]);
 
           //get product comment
-          const eResponse = await get('http://localhost:5000/evaluate/getEvaluateOfProduct', { gID: id });
+          const eResponse = await get('http://localhost:5000/evaluate/getEvaluateOfProduct', { pID: id });
           console.log(eResponse);
 
           if (eResponse.success) {

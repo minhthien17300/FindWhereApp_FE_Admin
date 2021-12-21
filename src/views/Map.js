@@ -28,10 +28,15 @@ function Map() {
 
   return (
     <div className='content'>
-    <div className="App">
-      <a>Map</a><br /><br />
-      {!loadMap ? <div>Loading...</div> : <GMap />}
-    </div>
+      <div className="App">
+        <a>Map</a><br /><br />
+        <input defaultValue={10.84965841619966}
+          placeholder="Nhập Vĩ độ"
+          type="text"
+          //onChange={e => setLng(e.target.value)} 
+        />
+        {!loadMap ? <div>Loading...</div> : <GMap lat={10.84965841619966} lng={106.7711747326735} />}
+      </div>
     </div>
   );
 }
