@@ -19,7 +19,7 @@ import {
   Col,
   Table,
 } from "reactstrap";
-import { get, post } from "../../helper/fetch.helper";
+import { get, post } from "helper/fetch.helper";
 
 function Detail(props) {
   //comments
