@@ -40,20 +40,20 @@ import DetailModify from "views/DetailModify";
 
 
 ReactDOM.render(
-  
+
   <ThemeContextWrapper>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/guest" render={(props) => <Guest {...props} />} />
-          <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-          <Route path="/user" render={(props) => <User {...props} />} />
-          {/* <Route path= "/detail-item" exact component={Detail}/> */}
-          <Route path="/detail-item" render={(props) => <Detail {...props} />} />
-          <Route path="/detail-modify" render={(props) => <DetailModify {...props} />} />
-          <Redirect from="/" to="/guest/login" />
-          {/* {userstate.role ? <Redirect from="/" to="/admin/dashboard" /> : <Redirect from="/" to="/rtl/dashboard" />} */}
-        </Switch>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/guest" render={(props) => <Guest {...props} />} />
+        <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+        <Route path="/user" render={(props) => <User {...props} />} />
+        {/* <Route path= "/detail-item" exact component={Detail}/> */}
+        <Route path="/detail-item" render={(props) => <Detail {...props} />} />
+        <Route path="/detail-modify" render={(props) => <DetailModify {...props} />} />
+        <Redirect from="/" to="/guest/login" />
+        {/* {userstate.role ? <Redirect from="/" to="/admin/dashboard" /> : <Redirect from="/" to="/rtl/dashboard" />} */}
+      </Switch>
+    </BrowserRouter>
   </ThemeContextWrapper>,
   document.getElementById("root")
 );

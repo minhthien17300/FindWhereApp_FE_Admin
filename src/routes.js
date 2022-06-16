@@ -21,6 +21,7 @@ import ManageEnterprise from "views/ManageEnterprise";
 import DetailModify from "views/DetailModify";
 import ChangePassword from "auth/ChangePassword";
 import MapScreen from "views/Map";
+import Bill from "views/Bill";
 
 const authRoutes = [
 
@@ -47,6 +48,14 @@ var routes = [
     rtlName: "Login",
     icon: "tim-icons icon-chart-pie-36",
     component: Login,
+    guestlayout: "/guest",
+  },
+  {
+    path: "/bill",
+    name: "Bill",
+    rtlName: "Bill",
+    icon: "tim-icons icon-chart-pie-36",
+    component: Bill,
     guestlayout: "/guest",
   },
 

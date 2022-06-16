@@ -109,7 +109,7 @@ function Sidebar(props) {
                 //các route muốn ẩn thì thêm đk
                 if (prop.name=="Detail" || prop.name=="Reset Password"|| prop.name=="Detail Modify" || prop.name=="Map") return null;
                 
-                if (!islogin) if (prop.name=="Dashboard" || prop.name=="User Profile" || prop.name=="Manage Products" || prop.name=="Manage Users" || prop.name=="Manage Enterprises" || prop.name=="Change Password" || prop.name=="Add Products" || prop.name=="Products") return null;
+                if (!islogin) if (prop.name=="Dashboard" || prop.name=="User Profile" || prop.name=="Manage Products" || prop.name=="Manage Users" || prop.name=="Manage Enterprises" || prop.name=="Change Password" || prop.name=="Add Products" || prop.name=="Products"|| prop.name =="Bill") return null;
                 if (islogin) if (prop.name=="Login" || prop.name=="Register" || prop.name =="Forgot Password" || prop.name=="Dashboard") return null;
                 if (isadmin) if (prop.name=="Login" || prop.name=="Register" || prop.name =="Forgot Password" || prop.name=="Add Products" || prop.name=="Manage Products") return null;
                 if (!isadmin) if(prop.name=="Login" || prop.name=="Register" || prop.name =="Forgot Password" || prop.name=="Add Enterprises" || prop.name=="Manage Users" || prop.name=="Manage Enterprises") return null;
