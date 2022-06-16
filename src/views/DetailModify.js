@@ -19,7 +19,7 @@ import {
   Col,
   Table,
 } from "reactstrap";
-import { get } from "../helper/fetch.helper";
+import { get } from '../helper/fetch.helper';
 import Select from "react-dropdown-select";
 
 
