@@ -20,7 +20,7 @@ const Login = (props) => {
       if(response.success)
       {
         //setRedirect(true);
-        localStorage.setItem("token", response.data);
+        localStorage.setItem("token", response.data.token);
         const admin = await get('http://localhost:5000/user/findUserByToken',{},{"Authorization": "Bearer " + localStorage.getItem("token")})
         console.log(admin.data.role)
         localStorage.setItem("role", admin.data.role)

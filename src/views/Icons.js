@@ -28,7 +28,7 @@ import './pagination.css'
 
 import { Link } from "react-router-dom";
 import Detail from "./ProductDetail/Detail";
-import {get} from "helper/fetch.helper"
+import {get} from "../helper/fetch.helper"
 
 
 
@@ -59,7 +59,7 @@ function Icons() {
                 var response = await get('http://localhost:5000/product/getProductSort');
                 
                 if(role == 2) {
-                    response = await get('http://localhost:5000/product/getEnterpriseProductSort',
+                    response = await get('http://localhost:5000/product/getEnterpriseProductSort2',
                     {},
                     {
                         'Content-Type': 'application/json',

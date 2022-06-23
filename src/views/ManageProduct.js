@@ -26,7 +26,7 @@ function Tables() {
   const [products, setProduct] = useState([]);
 
   const loadProducts = async () => {     
-            const response = await get('http://localhost:5000/product/getEnterpriseProductSort',
+            const response = await get('http://localhost:5000/product/getEnterpriseProductSort2',
             {},
             {
                 'Content-Type': 'application/json',
