@@ -62,7 +62,7 @@ function DetailModify(props) {
     (
       async () => {
         const id = GetURLParameter('id')
-        const response = await get('http://localhost:5000/product/getProductDetail', { id: id });
+        const response = await get('https://findwhere-app.herokuapp.com/product/getProductDetail', { id: id });
         console.log(response);
 
         if (response.success) {
@@ -89,7 +89,7 @@ function DetailModify(props) {
 
         //get game type
 
-        const responses = await get('http://localhost:5000/type/getALLType');
+        const responses = await get('https://findwhere-app.herokuapp.com/type/getALLType');
         console.log(responses)
         if (responses.success) {
           responses.data.forEach(element => {
@@ -134,7 +134,7 @@ function DetailModify(props) {
     }
     data.append('images', imageUpload)
 
-    const response = await fetch("http://localhost:5000/product/editProduct",
+    const response = await fetch("https://findwhere-app.herokuapp.com/product/editProduct",
       {
         method: "POST",
         headers: {

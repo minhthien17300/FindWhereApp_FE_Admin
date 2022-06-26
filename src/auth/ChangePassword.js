@@ -15,7 +15,7 @@ const ChangePassword = () => {
     const submit = async (e) => {
       e.preventDefault();
 
-      const response = await post('http://localhost:5000/user/changePassword',
+      const response = await post('https://findwhere-app.herokuapp.com/user/changePassword',
       { oldPassword: oldPassword, newPassword: newPassword, confirmPassword: confirmPassword },
       {
         'Content-Type': 'application/json',

@@ -63,12 +63,12 @@ function UserProfile() {
     (
       async () => {
         
-        /*const response = await fetch('http://localhost:5000/user/findUserByToken',{
+        /*const response = await fetch('https://findwhere-app.herokuapp.com/user/findUserByToken',{
             method: 'GET',
             headers: {"Authorization": "Bearer " + localStorage.getItem("token")}
         });
         const content = await response.json();*/
-        const response = await get('http://localhost:5000/user/findUserByToken', {}, { "Authorization": "Bearer " + localStorage.getItem("token") });
+        const response = await get('https://findwhere-app.herokuapp.com/user/findUserByToken', {}, { "Authorization": "Bearer " + localStorage.getItem("token") });
         if (response.success) {
           var d = response.data.dateofBirth;
 
@@ -127,7 +127,7 @@ function UserProfile() {
     // console.log(typeof(gender));
     // console.log(typeof(dateofBirth));
     e.preventDefault();
-    /* const response = await fetch('http://localhost:5000/user/changeInfo',{
+    /* const response = await fetch('https://findwhere-app.herokuapp.com/user/changeInfo',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ function UserProfile() {
         })
     }); */
 
-    const response = await post('http://localhost:5000/user/changeEnterpriseInfo',
+    const response = await post('https://findwhere-app.herokuapp.com/user/changeEnterpriseInfo',
       {
         name: name,
         //email: email,

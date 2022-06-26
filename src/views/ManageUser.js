@@ -26,7 +26,7 @@ function ManageUser() {
     const [name, setName] = React.useState(false);
 
     const loadUsers = async () => {     
-      const response = await get('http://localhost:5000/user/getALLUser',{},{
+      const response = await get('https://findwhere-app.herokuapp.com/user/getALLUser',{},{
               'Content-Type': 'application/json',
               Accept: 'application/json',"Authorization": "Bearer " + localStorage.getItem("token")});
       if(response.success)
@@ -54,7 +54,7 @@ function ManageUser() {
   
   const handleBan = async (id_user) => {
   
-    const response = await post('http://localhost:5000/user/banUser', {id: id_user}, {
+    const response = await post('https://findwhere-app.herokuapp.com/user/banUser', {id: id_user}, {
       'Content-Type': 'application/json',
       Accept: 'application/json',"Authorization": "Bearer " + localStorage.getItem("token")});
   
@@ -67,7 +67,7 @@ function ManageUser() {
   }
 
   const handleUnBan = async (id_user) => {
-    const response = await post('http://localhost:5000/user/unbanUser', {id: id_user}, {
+    const response = await post('https://findwhere-app.herokuapp.com/user/unbanUser', {id: id_user}, {
       'Content-Type': 'application/json',
       Accept: 'application/json',"Authorization": "Bearer " + localStorage.getItem("token")});
     

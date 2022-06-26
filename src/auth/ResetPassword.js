@@ -40,7 +40,7 @@ const ResetPassword = () => {
 
     const submit = async (e) => {
         e.preventDefault();
-        const response = await post('http://localhost:5000/user/resetPassword', { email: email, password:newPassword, confirmPassword:confirmNewPassword, otp:OTP });
+        const response = await post('https://findwhere-app.herokuapp.com/user/resetPassword', { email: email, password:newPassword, confirmPassword:confirmNewPassword, otp:OTP });
         console.log(response);
         
         if (response.success) {
@@ -54,7 +54,7 @@ const ResetPassword = () => {
     const send = async (e) => {
       e.preventDefault();
       console.log(email);
-        const response = await get('http://localhost:5000/user/forgotPassword', { email: email });
+        const response = await get('https://findwhere-app.herokuapp.com/user/forgotPassword', { email: email });
         console.log(response);
         
         if (response.success) {

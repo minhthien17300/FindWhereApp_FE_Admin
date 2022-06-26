@@ -56,10 +56,10 @@ function Icons() {
             async () => {
                 const role = localStorage.getItem("role");
                 
-                var response = await get('http://localhost:5000/product/getProductSort');
+                var response = await get('https://findwhere-app.herokuapp.com/product/getProductSort');
                 
                 if(role == 2) {
-                    response = await get('http://localhost:5000/product/getEnterpriseProductSort2',
+                    response = await get('https://findwhere-app.herokuapp.com/product/getEnterpriseProductSort2',
                     {},
                     {
                         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ function Icons() {
     const search = async(e) => {
         e.preventDefault()
 
-        const response = await get('http://localhost:5000/product/findProductByName', { name: name });
+        const response = await get('https://findwhere-app.herokuapp.com/product/findProductByName', { name: name });
         console.log(response);
         if (response.success) {
             setProduct(response.data);

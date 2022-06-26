@@ -26,7 +26,7 @@ const Register = () => {
         console.log(dateofBirth);
 
         const response = 
-        await fetch('http://localhost:5000/user/register',{
+        await fetch('https://findwhere-app.herokuapp.com/user/register',{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

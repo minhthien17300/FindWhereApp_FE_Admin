@@ -26,7 +26,7 @@ function Tables() {
   const [products, setProduct] = useState([]);
 
   const loadProducts = async () => {     
-            const response = await get('http://localhost:5000/product/getEnterpriseProductSort2',
+            const response = await get('https://findwhere-app.herokuapp.com/product/getEnterpriseProductSort2',
             {},
             {
                 'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ function Tables() {
 
 const handleDelete = async (id) => {
   console.log(id);
-  const response = await post('http://localhost:5000/product/deleteProduct', {id: id},
+  const response = await post('https://findwhere-app.herokuapp.com/product/deleteProduct', {id: id},
   {
     'Content-Type': 'application/json',
     Accept: 'application/json',"Authorization": "Bearer " + localStorage.getItem("token")});

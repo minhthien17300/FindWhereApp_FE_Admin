@@ -32,7 +32,7 @@ const request = async ( url, params = {}, method = 'GET', headers = {'Content-Ty
 const get = ( url, params, headers ) => request( url, params, 'GET', headers );
 const post = ( url, params, headers ) => request( url, params, 'POST', headers );
 
-module.exports = {
+export {
     get,
     post
 }

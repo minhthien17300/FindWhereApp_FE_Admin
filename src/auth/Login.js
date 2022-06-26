@@ -15,18 +15,18 @@ const Login = (props) => {
     const submit = async (e) => {
       e.preventDefault();
 
-      const response = await post('http://localhost:5000/user/login', { userName: userName, userPwd: userPwd });
+      const response = await post('https://findwhere-app.herokuapp.com/user/login', { userName: userName, userPwd: userPwd });
       console.log(response);
       if(response.success)
       {
         //setRedirect(true);
         localStorage.setItem("token", response.data.token);
-        const admin = await get('http://localhost:5000/user/findUserByToken',{},{"Authorization": "Bearer " + localStorage.getItem("token")})
-        console.log(admin.data.role)
-        localStorage.setItem("role", admin.data.role)
+        // const admin = await get('https://findwhere-app.herokuapp.com/user/findUserByToken',{},{"Authorization": "Bearer " + localStorage.getItem("token")})
+        // console.log(admin.data.role)
+        localStorage.setItem("role", response.data.role)
 
-        if(admin.data.role==1) setRedirect(1);
-        else if (admin.data.role == 2) setRedirect(2);
+        if(response.data.role==1) setRedirect(1);
+        else if (response.data.role == 2) setRedirect(2);
         else setRedirect(0);
         
         

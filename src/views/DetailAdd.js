@@ -35,7 +35,7 @@ function DetailAdd() {
   useEffect(() => {
     (
         async () => {
-            const response = await get('http://localhost:5000/type/getALLType');
+            const response = await get('https://findwhere-app.herokuapp.com/type/getALLType');
             if(response.success)
             {
               response.data.forEach(element => {
@@ -76,7 +76,7 @@ function DetailAdd() {
     }
     data.append('images',image)
 
-    const response =await fetch("http://localhost:5000/product/addProduct", 
+    const response =await fetch("https://findwhere-app.herokuapp.com/product/addProduct", 
     {
       method:"POST",
       headers:{

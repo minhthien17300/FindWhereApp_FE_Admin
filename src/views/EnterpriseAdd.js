@@ -64,7 +64,7 @@ function EnterpriseAdd() {
   const submit = async (e) => {
     e.preventDefault()
 
-    const response = await post('http://localhost:5000/user/addEnterprise',
+    const response = await post('https://findwhere-app.herokuapp.com/user/addEnterprise',
       { name: name, userName: userName, email: email, phone: phone, lat: lat, lng: lng },
       {
         'Content-Type': 'application/json',

@@ -60,7 +60,7 @@ function Detail(props) {
     (
       async () => {
         const id = GetURLParameter('id')
-        const response = await get('http://localhost:5000/product/getProductDetail', { id: id });
+        const response = await get('https://findwhere-app.herokuapp.com/product/getProductDetail', { id: id });
         console.log(response);
 
         if (response.success) {
@@ -76,7 +76,7 @@ function Detail(props) {
           setImage(response.data.images[0]);
 
           //get product comment
-          const eResponse = await get('http://localhost:5000/evaluate/getEvaluateOfProduct', { pID: id });
+          const eResponse = await get('https://findwhere-app.herokuapp.com/evaluate/getEvaluateOfProduct', { pID: id });
           console.log(eResponse);
 
           if (eResponse.success) {
@@ -87,7 +87,7 @@ function Detail(props) {
           }
 
           //get enterprise name
-          const uResponse = await get('http://localhost:5000/user/getEnterpriseByID', { id: response.data.eID });
+          const uResponse = await get('https://findwhere-app.herokuapp.com/user/getEnterpriseByID', { id: response.data.eID });
           console.log(uResponse);
 
           if (uResponse.success) {
@@ -111,7 +111,7 @@ function Detail(props) {
           setUserEvaluate(userEva);
         } else {
           //get user comment
-          const uResponse = await get('http://localhost:5000/evaluate/getUserEvaluate', { gID: id }, {
+          const uResponse = await get('https://findwhere-app.herokuapp.com/evaluate/getUserEvaluate', { gID: id }, {
             'Content-Type': 'application/json',
             Accept: 'application/json',"Authorization": "Bearer " + localStorage.getItem("token")});
           console.log(uResponse);
@@ -142,7 +142,7 @@ function Detail(props) {
     console.log(id);
 
     if (!evaluateExist && localStorage.getItem("token") != null) {
-      const response = await post('http://localhost:5000/evaluate/addEvaluate', { gID: id, score: userScore, comment: userReview }, {
+      const response = await post('https://findwhere-app.herokuapp.com/evaluate/addEvaluate', { gID: id, score: userScore, comment: userReview }, {
         'Content-Type': 'application/json',
         Accept: 'application/json', "Authorization": "Bearer " + localStorage.getItem("token")
       });
@@ -153,7 +153,7 @@ function Detail(props) {
         setIsBan(true);
       }
     } else if (evaluateExist) {
-      const response = await post('http://localhost:5000/evaluate/editEvaluate', { gID: id, score: userScore, comment: userReview }, {
+      const response = await post('https://findwhere-app.herokuapp.com/evaluate/editEvaluate', { gID: id, score: userScore, comment: userReview }, {
         'Content-Type': 'application/json',
         Accept: 'application/json', "Authorization": "Bearer " + localStorage.getItem("token")
       });
